@@ -1,0 +1,40 @@
+.expenseItem{
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    padding: 15px;
+ }
+
+.item-body{
+    border: 2px solid #ddd;
+    height: auto;
+    min-height: 30vh;
+    max-height: 50vh;
+
+}
+
+.item-img{
+
+    width: 100%;
+    height: auto;
+    min-height: 30vh;
+    max-height: 50vh;
+    border-bottom: black;
+    object-fit: contain;
+
+}
+.item-name{
+    height: auto;
+    min-height: 25vh;
+    max-height: 25vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: black;
+
+}
+
+.item-details{
+    margin-top: 7vh;
+}
+

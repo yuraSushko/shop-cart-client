@@ -1,6 +1,30 @@
+
+.shop{
+    background-color: azure;
+}
+
+
+.cart{
+    max-width: 20%;
+    padding-top: 120px;
+}
+
+.search-bar{
+        width: 100vw;
+        top:60px;
+}
+
+.resize-badge {
+    font-size: 1.2rem;
+}
+
+
+.body{
+    padding-top: 120px;
+    margin-bottom: 10px;
+}
+
 .expenses{
-    background-color: beige;
-    flex: auto;
-    column-gap: 12px;
-    border-radius: 5px;
+    margin-top: 60px;
+
 }

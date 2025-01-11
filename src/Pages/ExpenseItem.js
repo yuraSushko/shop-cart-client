@@ -1,51 +1,37 @@
 import {useEffect, useState} from "react";
 import {auth,myDb} from "../api/FireBaseApi";
 import {collection, doc, setDoc,getDoc,getDocs,deleteDoc} from "firebase/firestore";
+import "./ExpenseItem.css"
 
 export default function ExpenseItem(props){
     const add='+'
     const remove='-'
     const init ='init'
     const [amountBought,setAmountBought]= useState( null)
-    //const bucket = '/buy_list'
-    //const myDb = collection(db, bucket)
 
     const handleAmount = (action)=>{
-        //console.log('amountBought when try to buy ',amountBought )
-
         if(amountBought !== undefined && amountBought !== null) {
             let amt = amountBought
-            //console.log("entered if in buy amout")
-              //await findItemIfExists() //amountBought
-            //console.log('amt', amt)
             if (action === add) {
                 amt++
             } else if (action === remove) {
                 amt--
             }
-            //console.log('amt', amt)
             const amountToSet= amt > 0 ? amt : 0
             setAmountBought(amountToSet)
         }
         console.log('posting to DB', props.id, amountBought)
-        //if(props.id){}
-        //postItemToDB()
+
     }
-    useEffect( () => {
-        findItemIfExistsAndSetAmount()
-        //handleAmount(init)
-    },[])
+    useEffect(() => { findItemIfExistsAndSetAmount() },[])
 
     useEffect(()=>{
-        console.log('posting to DB', props.id, amountBought)
         if (amountBought !== undefined && amountBought !== null) {
             postItemToDB()
         }
-//        findItemIfExists()
     },[amountBought])
 
     const postItemToDB= async ()=>{
-        //console.log('props.id: ',props.id)
         if( amountBought>0) {
             const objToAdd = {
                 name: props.name,
@@ -56,12 +42,9 @@ export default function ExpenseItem(props){
             await setDoc(doc(myDb, String(props.id)), objToAdd)
         }
         else{
-            try {
+             try {
                 await deleteDoc(doc(myDb, String(props.id)))
-
-            }catch (e){
-                console.log(e)
-            }
+             }catch (e) {console.log(e)}
         }
     }
 
@@ -74,23 +57,32 @@ export default function ExpenseItem(props){
         }
         const foundItem =  await item.data()
         const amountToSet =  foundItem ? foundItem.amount : 0
-        //console.log('amountToSet',amountToSet)
         setAmountBought(amountToSet)
     }
 
 
 
     return(
-       // (amountBought) &&(
-            <>
-                <img src={props.img} style={{width: "50px"}}/> <br/>
-                <label >name: {props.name}</label> <br/>
-                <label>price: {props.price} $</label> <br/>
-                <button className={props.canChangeAmount ? "btn-primary" : "d-none"}  onClick={() => handleAmount(add)}>{add}</button>
-                <label>amount: {amountBought}</label>
-                <button className={props.canChangeAmount ? "btn-primary" : "d-none"} onClick={() => handleAmount(remove)}>{remove}</button>
-            </>
-       // )
-    )
+       <div className={"expenseItem container"} >
+            <div>
+                <img src={props.img} className={"item-img"} style={{width: "100%", height: "auto", maxHeight:"200px"}} alt={"img"}/>
+            </div>
 
-}
+            <div className={" item-body fs-3"}>
+               <div className={"item-name fs-5"}>
+                    <label >  {props.name}</label>
+               </div>
+                <div className="item-details">
+                    <label>price: {props.price} $</label><br/>
+
+                    <button className={props.canChangeAmount ? "btn btn-secondary" : "d-none"}
+                            onClick={() => handleAmount(add)}>{add}</button>
+                    <label className={""}>amount: {amountBought}</label>
+                    <button className={props.canChangeAmount ? "btn btn-secondary" : "d-none"}
+                            onClick={() => handleAmount(remove)}>{remove}</button>
+                    </div>
+                </div>
+        </div>
+            )
+
+            }

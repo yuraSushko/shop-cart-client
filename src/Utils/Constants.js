@@ -1,7 +1,4 @@
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
 
 const FIRE_BASE_CONFIG = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -14,8 +11,6 @@ const FIRE_BASE_CONFIG = {
 };
 
 const API_ITEM_LIST_URL = "https://fakestoreapi.in/api/products"
-
-
 const ITEM_LIST_LIMIT = 30
 const CATALOG_TABLE_COLUMNS=4
 

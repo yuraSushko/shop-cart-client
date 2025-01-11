@@ -1,0 +1,15 @@
+.navbar {
+
+    width: 100%;
+    background-color: darkgrey;
+    box-shadow: rgb(137, 128, 128);
+    z-index: 1050;
+    position: relative;
+    line-height: 100px;
+}
+
+.icon-href{
+    color: inherit;
+    z-index: 1000;
+
+}
